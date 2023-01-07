@@ -1,0 +1,124 @@
+body {
+  background-color: #f7f7f7;
+  background-image: linear-gradient(45deg, #e3e3e3 0%, #f7f7f7 100%);
+  font-family: "Roboto", Helvetica, Arial, sans-serif;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #373a3c;
+}
+
+.container {
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 2rem;
+  background-color: #fff;
+  padding: 2rem 1rem;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.08);
+  border: 1px solid #e8e8e8;
+  border-radius: 0.3rem;
+  padding: 2rem 3rem;
+}
+
+h1 {
+  font-family: "Roboto", Helvetica, Arial, sans-serif;
+  text-align: center;
+  line-height: 1.15;
+  display: block;
+  margin: 0 auto;
+  margin-top: 0px;
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 1px;
+  font-size: 2rem;
+  margin-top: 1rem;
+}
+
+h2 {
+  text-align: center;
+  display: block;
+  margin: 0 0 1rem 0;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+}
+
+.acct-notifications {
+  background-color: #fff;
+  border-color: #eaeaea;
+  border-radius: 0.3rem;
+  border: solid 1px #ddd;
+  margin: 1rem auto;
+  padding: 1.5rem 3rem;
+  display: block;
+  max-width: 450px;
+  min-height: 300px;
+}
+
+label {
+  font-size: 0.85rem !important;
+  font-weight: bold;
+  line-height: 1.15rem;
+  text-transform: uppercase;
+}
+
+input {
+  border: 1px solid #ccc;
+  border-radius: 0.25rem;
+  transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+  display: block;
+  width: 90%;
+  padding: 0.375rem 0.75rem;
+  font-size: 1.5rem;
+  font-weight: 400;
+  line-height: 2.5rem;
+  padding-left: 2.5rem;
+  background: transparent url("//g.foolcdn.com/misc-assets/flag_us.gif") 2% 50% no-repeat;
+}
+
+small {
+  display: block;
+  font-size: 80%;
+  margin: 1.5rem 0;
+  font-style: italic;
+}
+
+.btn {
+  display: inline-block;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  cursor: pointer;
+  user-select: none;
+  border: 1px solid transparent;
+  font-weight: 700;
+  font-size: 1em;
+  color: #fff;
+  background-color: #07a;
+  border-color: #07a;
+  padding: 0.65em 1.3em;
+  border-bottom: 0.15em solid #005599;
+  border-radius: 5px;
+  line-height: 1.5;
+  border-radius: 0.25rem;
+  transition: all 0.2s ease-in-out;
+}
+
+.alert {
+  padding: 15px;
+  margin-bottom: 1rem;
+  border: 1px solid transparent;
+  border-radius: 0.25rem;
+}
+
+.alert-success {
+  background-color: #dff0d8;
+  border-color: #d0e9c6;
+  color: #3c763d;
+}
+
+.alert-danger {
+  background-color: #f2dede;
+  border-color: #ebcccc;
+  color: #a94442;
+}
