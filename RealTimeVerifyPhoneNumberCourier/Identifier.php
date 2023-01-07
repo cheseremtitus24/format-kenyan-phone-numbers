@@ -24,6 +24,7 @@ class Identifier{
                 return 'Invalid Phone Number ' . $num;
             }
         }
+        return 'Invalid Phone Number ' . $num;
     }
 
     /**
