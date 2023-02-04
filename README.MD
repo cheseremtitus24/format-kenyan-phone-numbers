@@ -1,5 +1,6 @@
 # Phone Number Formatter
 This is a simple php class that formats Kenyan phone Numbers and identifies which carrier the number is on.
+It further provides a POC registration form that validates user's phone number and captures the user's email and contact details
 
 ## Usage
 Instantiate the class or extend on your methods
