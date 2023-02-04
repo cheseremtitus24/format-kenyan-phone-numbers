@@ -21,10 +21,10 @@ class Identifier{
                 $phone = '254' . $phone;
                 return $phone;
             } else {
-                return 'Invalid Phone Number ' . $num;
+                return 'Invalid Phone Number ';// . $num;
             }
         }
-        return 'Invalid Phone Number ' . $num;
+        return 'Invalid Phone Number ';// . $num;
     }
 
     /**

@@ -1,5 +1,6 @@
 // Setting regex for validating phone number
 var regex;
+var showerror = 1;
 regex = /^s*(0?\d{3})?([-. (]*(\d{3})[-. )]*)[-](\d{3})\s*$/gm;
 // Positive:
 // 302-555-1234
@@ -18,7 +19,12 @@ regex = /^s*(0?\d{3})?([-. (]*(\d{3})[-. )]*)[-](\d{3})\s*$/gm;
 $('#mobile-phone-number').keydown(function (e) {
 var key = e.charCode || e.keyCode || 0;
 $text = $(this);
+
 if (key !== 8 && key !== 9) {
+    // if($text.val().length >= 11 and $text.val().length <= 12)
+    // {
+    //     verify_phone();
+    // }
     if ( ($text.val().length > 0) &&  $text.val()[0] == 0  )
     {
         // alert($text.val());
@@ -48,7 +54,7 @@ return;
 
 // Setting alerts if not a valid phone number
 $('input').on('input', function() {
-
+/* When the phone number entered by the user matches the expected regex we need to initiate a json call that will verify the phone number courier*/
 if (($(this).val().length >= 11) && regex.test( $(this).val() )) {
     /*
     Perform an ajax call that will validate the courier and return a json
@@ -62,7 +68,7 @@ if (($(this).val().length >= 11) && regex.test( $(this).val() )) {
 
         purchasetimer = setInterval(function () {
             // $.post( "RealTimePurchaseUpdate/test.php", { uuid: "55a645b7-3395-4d6b-8594-b628f1cd4ce0", biuid: "3", mac:"80-CE-B9-70-42-BD", ip:"10.1.0.2" })
-            $.post( "RealTimeVerifyPhoneNumberCourier/test.php", { uuid: keycloak_id, biuid: billing_plan_id, mac:mac, ip:ip })
+            $.post( "RealTimeVerifyPhoneNumberCourier/verify_courier.php", { contact_number: $text.val()/*,mac:mac, ip:ip*/ })
                 .done(function( data ) {
                     data = $.parseJSON(data);
                     data_len = data.length;
@@ -75,110 +81,51 @@ if (($(this).val().length >= 11) && regex.test( $(this).val() )) {
                     }
                     else
                     {
-                        // console.log(data);
-                        for (i = 0; i < data_len; i++) {
-                            /**
-                             * Handle serious bug that can occur when an empty string is received
-                             * sice an empty string in comparison results to zero
-                             * # An empty string converts to 0
-                             *
-                             */
-
-
-                            let used = parseInt(data[i]['used']);
-                            if (isNaN(used))
-                            {
-                                used = -1;
-                            }
-                            let mpesa_pay_status = parseInt(data[i]['status_code']);
-                            if (isNaN(mpesa_pay_status))
-                            {
-                                mpesa_pay_status = -1;
-                            }
-                            /* Successful account activation + funds received*/
-                            if (mpesa_pay_status == 0 && used == 1)
-                            {
-                                // todo: load a success page and display
-                                document.getElementById("WaitingPay").style.display = "none";
-                                console.log(mpesa_pay_status + " "+ used);
-                                /* Clear the interval execute of ajax check for mpesa callback*/
-                                clearInterval(purchasetimer);
-                                document.getElementById("successpay").style.display = "block";
-                                activ_timer = setTimeout(activationloader, 3000);
-
-
-                            }
-                            /* Wrong Mpesa Pin Entered*/
-                            else if(mpesa_pay_status ==2001 && used == 0)
-                            {
-                                //todo: display fail reason and offer resend only to point of failure do not
-                                // rewrite db rows.
-                                document.getElementById("WaitingPay").style.display = "none";
-                                console.log(mpesa_pay_status + " "+ used);
-                                /* Clear the interval execute of ajax check for mpesa callback*/
-                                clearInterval(purchasetimer);
-                                mpesa_wrong_pin();
-                                document.getElementById("successpay").style.display = "block";
-
-                            }
-                            /* Mpesa timedout Waiting for user input*/
-                            else if (mpesa_pay_status == 1037 && used == 0)
-                            {
-                                //todo: display fail reason and offer resend only to point of failure do not
-                                // rewrite db rows.
-                                document.getElementById("WaitingPay").style.display = "none";
-                                console.log(mpesa_pay_status + " "+ used);
-                                /* Clear the interval execute of ajax check for mpesa callback*/
-                                clearInterval(purchasetimer);
-                                mpesa_timedout();
-                                document.getElementById("successpay").style.display = "block";
-
-                            }
-                            /* User Cancelled the stk push request */
-                            else if (mpesa_pay_status == 1032 && used == 0)
-                            {
-                                //todo: display fail reason and offer resend only to point of failure do not
-                                // Warn of the risk of device being suspended for a specified time that will be
-                                // incremental and resets monthly
-                                document.getElementById("WaitingPay").style.display = "none";
-                                console.log(mpesa_pay_status + " "+ used);
-                                /* Clear the interval execute of ajax check for mpesa callback*/
-                                clearInterval(purchasetimer);
-                                pay_cancelled();
-                                document.getElementById("successpay").style.display = "block";
-
-                            }
-                            /* User account has insufficient balance*/
-                            else if (mpesa_pay_status == 1 && used == 0)
-                            {
-                                // todo: load affordably priced bundles to be purchased
-                                document.getElementById("WaitingPay").style.display = "none";
-                                console.log(mpesa_pay_status + " "+ used);
-                                /* Clear the interval execute of ajax check for mpesa callback*/
-                                clearInterval(purchasetimer);
-                                mpesa_insuffient_bal();
-                                document.getElementById("successpay").style.display = "block";
-
-                            }
-                            /* Other unhandled mpesa Error */
-                            else
-                            {
-                                // todo: report to technical staff at given telegram number that on
-                                // click loads up Telegram/Whatsapp Number.
-
-                            }
-
-                            /**
-                             *
-                             */
-                            // console.log(used);
-                            // console.log(mpesa_pay_status);
-                            //todo Handle case when there is a timout on pay which should be 10 seconds.
-                            // show to client that they should
-
-                            break; /* only handle item at first index- */
+                        console.log(data);
+                        // console.log(data.courier);
+                        let courier = data.courier;
+                        let formatted_phone = data.phone_number;
+                        if (courier == "Invalid Operator" || formatted_phone == "Invalid Phone Number ")
+                        {
+                            //disable the send button
+                            console.log("invalid "+ courier);
+                            console.log("invalid " + formatted_phone);
+                            document.getElementById("disable_me").disabled = true;
+                            $('.result').text('This phone number does NOT appear to be valid.')
+                            document.getElementById("disable_me").style.display = "none";
+                            $('.result').addClass('alert alert-danger')
+                            $('.result').removeClass('alert-success')
 
                         }
+                        else
+                        {
+                            console.log("correct " +formatted_phone);
+                            console.log("correct " + courier);
+                            //re-enaable the submit button
+                            // document.getElementById("disable_me").removeAttribute('disabled');
+                            // document.getElementById("disable_me").style.display = "block";
+                            if (courier != "safaricom")
+                            {
+                                document.getElementById("disable_me").disabled = true;
+                                $('.result').text('Mobile Operator Must be a Safaricom Line')
+                                document.getElementById("disable_me").style.display = "none";
+                                document.getElementById("pwd").style.display = "none";
+                                $('.result').removeClass('alert-success')
+                                $('.result').addClass('alert alert-danger')
+                            }
+                            else
+                            {
+                                $('.result').text('The phone number appears valid.')
+                                $('.result').addClass('alert alert-success')
+                                document.getElementById("pwd").style.display = "block";
+                                document.getElementById("mobile-phone-number").readOnly = true;
+                                $('.result').removeClass('alert-danger')
+                                clearInterval(purchasetimer);
+                            }
+
+                        }
+
+
                     }
 
 
@@ -192,15 +139,44 @@ if (($(this).val().length >= 11) && regex.test( $(this).val() )) {
 $('.result').text('The phone number appears valid.')
 $('.result').addClass('alert alert-success')
 $('.result').removeClass('alert-danger')
-} else {
+}
+
+else {
 $('.result').text('This phone number does NOT appear to be valid.')
 $('.result').addClass('alert alert-danger')
 $('.result').removeClass('alert-success')
 }
 
-if ($(this).val().length < 11)  {
+if ($(this).val().length < 11 )  {
 $('.result').text('')
 $('.result').removeClass('alert alert-danger alert-success')
 }
 
 });
+
+$('#confirm_password').keyup(function (e) {
+    $texts = $(this);
+
+
+        if ( ($texts.val().length > 0 && ($('#password').val() == $texts.val()) )   )
+        {
+            // alert($text.val());
+            document.getElementById("cif").style.display = "block";
+            //re-enaable the submit button
+            document.getElementById("disable_me").removeAttribute('disabled');
+            document.getElementById("disable_me").style.display = "block";
+            $('.result').addClass('alert alert-success');
+
+        }
+        else
+        {
+            document.getElementById("cif").style.display = "none";
+            //disable the submit button
+            document.getElementById("disable_me").style.display = "none";
+            document.getElementById("disable_me").disabled = true;
+        }
+
+
+
+    return;
+})
