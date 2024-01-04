@@ -118,6 +118,8 @@ if (($(this).val().length >= 11) && regex.test( $(this).val() )) {
                                 $('.result').text('The phone number appears valid.')
                                 $('.result').addClass('alert alert-success')
                                 document.getElementById("pwd").style.display = "block";
+                                document.getElementById("mobile-phone-number").value=formatted_phone;
+                                // document.getElementById("mobile-phone-number").inn=formatted_phone;
                                 document.getElementById("mobile-phone-number").readOnly = true;
                                 $('.result').removeClass('alert-danger')
                                 clearInterval(purchasetimer);
@@ -142,9 +144,9 @@ $('.result').removeClass('alert-danger')
 }
 
 else {
-$('.result').text('This phone number does NOT appear to be valid.')
-$('.result').addClass('alert alert-danger')
-$('.result').removeClass('alert-success')
+// $('.result').text('This phone number does NOT appear to be valid.')
+// $('.result').addClass('alert alert-danger')
+// $('.result').removeClass('alert-success')
 }
 
 if ($(this).val().length < 11 )  {

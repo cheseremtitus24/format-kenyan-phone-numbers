@@ -25,7 +25,7 @@ if (key !== 8 && key !== 9) {
     // {
     //     verify_phone();
     // }
-    if ( ($text.val().length > 0) &&  $text.val()[0] === 0  )
+    if ( ($text.val().length > 0) &&  $text.val()[0] == 0  )
     {
         // alert($text.val());
         if ($text.val().length === 4) {
@@ -123,10 +123,6 @@ if (($(this).val().length >= 11) && regex.test( $(this).val() )) {
                                 document.getElementById("mobile-phone-number").readOnly = true;
                                 $('.result').removeClass('alert-danger')
                                 clearInterval(purchasetimer);
-                                // activate Submit Button and set attribute of input box to read only
-                                document.getElementById("disable_me").removeAttribute('disabled');
-                                document.getElementById("disable_me").style.display = "block";
-                                $('.result').addClass('alert alert-success');
                             }
 
                         }
@@ -160,3 +156,27 @@ $('.result').removeClass('alert alert-danger alert-success')
 
 });
 
+$('#password').keyup(function (e) {
+    $texts = $(this);
+
+
+        if ( ($texts.val().length > 0 )   )
+        {
+            // alert($text.val());
+            //re-enaable the submit button
+            document.getElementById("disable_me").removeAttribute('disabled');
+            document.getElementById("disable_me").style.display = "block";
+            $('.result').addClass('alert alert-success');
+
+        }
+        else
+        {
+            //disable the submit button
+            document.getElementById("disable_me").style.display = "none";
+            document.getElementById("disable_me").disabled = true;
+        }
+
+
+
+    return;
+})

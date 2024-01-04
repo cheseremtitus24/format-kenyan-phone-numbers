@@ -7,6 +7,7 @@ class Identifier{
      * @return int : formated phone number
      * @return string : invalid error
      * @access public
+     * # Safaricom Lines Regex: ^(254(101|111|7[0,1,2][0-9]|79[0,1,2,3,7,8,9]|7[4][0,1,2,3,4,5,6,8]|75[7,9]|76[8,9])\d{6})$
      */
 
     public function formatted_phone_number($num)

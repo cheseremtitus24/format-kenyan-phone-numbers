@@ -4,20 +4,21 @@
   <meta charset="UTF-8">
   <title>CodePen - Phone Number Validation (US)</title>
   <link rel="stylesheet" href="./style.css">
-
+<!--    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>-->
+    <script  src="./jquery.js"></script>
 </head>
 <body>
 <!-- partial:index.partial.html -->
 <section class="container" id="main-content" tabindex="-1">
     
             
-    <h1>Register Mobile Number</h1>
-    <h2>Set your mobile number to get text updates from your services.</h2>
+    <h1>Login Using Mobile Number</h1>
+    <h2>Set your mobile number to access and use Uelekezo WiFi services.</h2>
 
             
     <div class="acct-notifications">
 
-            <p>Enter the mobile phone number you would like to use with your account.</p>
+            <p>Enter the registered Safaricom mobile phone number you would use with your account.</p>
             <form method="post" _lpchecked="1" autocomplete="off">
                 <label class="smallcaps-heading mobile-phone-heading" for="mobile-phone-number">Mobile phone number:</label>
                 <div class="form-row align-items-center">
@@ -33,26 +34,19 @@
                 <label class="smallcaps-heading mobile-phone-heading" for="password">Set Login Password</label>
                 <div id="pwd" style="display: none">
                     <input type="password" name="password" maxlength="25"  autocomplete="off" placeholder="Set Password" id="password" class="form-control acct-mobile-number">
-                    <input type="password" name="confirm_password" maxlength="25" placeholder="Confirm Password" id="confirm_password" class="form-control acct-mobile-number">
-                </div>
-
-                <label class="smallcaps-heading mobile-phone-heading" for="first_name">& Contact Information</label>
-                <div class="form-row align-items-center" id="cif" style="display: none">
-
-                    <input type="text" name="first_name" maxlength="25"   placeholder="First Name" id="first_name" class="form-control acct-mobile-number">
-                    <input type="text" name="last_name" maxlength="25" placeholder="Last Name" id="last_name" class="form-control acct-mobile-number">
-                    <input type="email" name="email" required maxlength="55" placeholder="Email Address" id="email" class="form-control acct-mobile-number">
                 </div>
 
                 <div class="col-auto form-button-col acct-mobile-submit">
-                    <button class="btn btn-primary align-right" type="submit"  disabled style="display:none" id="disable_me">Register To Network</button>
+                    <button class="btn btn-primary align-right" type="submit"  disabled style="display:none" id="disable_me">Login To Network</button>
                 </div>
             </form>
 
     </div>
 </section>
 <!-- partial -->
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script><script  src="./script.js"></script>
+
+
+  <script  src="./login_script_orig.js"></script>
 
 </body>
 </html>
